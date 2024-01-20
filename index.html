@@ -74,19 +74,36 @@
     <div class="row">
       <div class="col">
         <label> Enter your password </label>
-        <input id="pass" onkeypress="passwordCheck();" type="text" />
+        <input id="pass" oninput="start();" type="text" />
+        <h6 id="length"></h6>
+        <h6 id="upprchar"></h6>
+        <h6 id="symbol"></h6>
+        <h6 id="lowerchar"></h6>
       </div>
     </div>
     <script>
       const passwordCheck = () => {
         let capitalcount = 0;
-        let lengthcount = Array.from(document.getElementById("pass").value);
+        const check = Array.from(document.getElementById("pass").value);
         let symbolcount = 0;
         let smalllettercount = 0;
 
         //a-z
         //A-Z
         //symbols
+        check.map((symbol) => {
+          if (
+            symbol === "!" ||
+            symbol === "@" ||
+            symbol === "$" ||
+            symbol === "%" ||
+            symbol === "&" ||
+            symbol === "*" ||
+            symbol === "+"
+          ) {
+            return symbolcount++;
+          }
+        });
         check.map((data) => {
           const ascii = data.charCodeAt();
           if (ascii >= 97 && ascii <= 122) {
@@ -95,10 +112,49 @@
             capitalcount++;
           }
         });
-        if (length.count < 9) {
-          console.log("Password is too short. Minimum length is 9 characters.");
-        }
+        const checklength = () => {
+          if (check.length < 9) {
+            return "Password is too short. Minimum length is 9 characters.";
+          } else {
+            return "The password has sufficient length";
+          }
+        };
+        const checkcapital = () => {
+          if (capitalcount === 0) {
+            return "Password must contain at least one capial letter";
+          } else {
+            return "The password has sufficient capital letters";
+          }
+        };
+        const checksymbol = () => {
+          if (symbolcount === 0) {
+            return "Password must contain at least one special symbol";
+          } else {
+            return "The password has special characters";
+          }
+        };
+        const checksmallletter = () => {
+          if (smalllettercount === 0) {
+            return "Password must contain at least one small letter";
+          } else {
+            return "The password has at least one small letter";
+          }
+        };
+        document.getElementById("length").innerHTML = checkcapital();
+        document.getElementById("upprchar").innerHTML = checklength();
+        document.getElementById("lowerchar").innerHTML = checksmallletter();
+        document.getElementById("symbol").innerHTML = checksymbol();
       };
+      function start() {
+        if (document.getElementById("pass").value.length === 0) {
+          document.getElementById("length").innerHTML = "";
+          document.getElementById("upprchar").innerHTML = "";
+          document.getElementById("lowerchar").innerHTML = "";
+          document.getElementById("symbol").innerHTML = "";
+        } else {
+          passwordCheck();
+        }
+      }
     </script>
   </body>
 </html>

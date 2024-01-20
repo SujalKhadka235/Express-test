@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regular expressions</title>
+  </head>
+  <body>
+    <label> Enter your email address: </label>
+    <input id="email" oninput="start();return false" type="text" />
+    <button id="submit">save</button>
+    <br />
+    <p id="display"></p>
+    <script>
+      function email() {
+        const check = document.getElementById("email").value;
+        const pattern = /^([a-zA-Z0-9_.]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
+        if (pattern.test(check)) {
+          return (document.getElementById("display").innerHTML =
+            "valid email address");
+        }
+        return (document.getElementById("display").innerHTML =
+          "invalid email id");
+      }
+      function start() {
+        if (document.getElementById("email").value.length === 0) {
+          document.getElementById("display").innerHTML = "";
+        } else {
+          email();
+        }
+      }
+    </script>
+  </body>
+</html>
