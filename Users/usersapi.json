@@ -1,0 +1,10 @@
+{
+  "name": "sujal khadka",
+  "age": "20",
+  "college": "aryan college of enginneering",
+  "address": {
+    "city": "kathmandu",
+    "place": "chardobato",
+    "district": "bhaktapur"
+  }
+}
