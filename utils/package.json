@@ -1,0 +1,13 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "numberformatter.js",
+  "scripts": {
+    "start": "index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
